@@ -9,7 +9,7 @@ const handleRegister = (req, res, db, bcrypt) => {
       username: username
     })
       .into('login')
-      .returning('user')
+      .returning('username')
       .then(loginuser => {
         return trx('users')
           .returning('*')
