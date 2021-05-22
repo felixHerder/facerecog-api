@@ -3,7 +3,7 @@ const handleSignin = (req, res, db, bcrypt) => {
   if (!username || !password)
     return res.status(400).json('incorect form submision');
 
-  db.select('user', 'hash').from('login').where({ username })
+  db.select('username', 'hash').from('login').where({ username })
     .then(data => {
       const isValid = bcrypt.compareSync(password, data[0].hash);
       if (isValid) {
