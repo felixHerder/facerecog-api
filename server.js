@@ -10,13 +10,13 @@ const profile = require('./controllers/profile.js');
 const image = require('./controllers/image.js');
 
 
-// process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
   client: 'pg',
   //localhost config
   connection: {
     connectionString: process.env.DATABASE_URL,
-    ssl: process.env.DATABASE_SSL === 'false' ? false : true
+    ssl: process.env.h === 'false' ? false : true
   }
 });
 const app = express();
