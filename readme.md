@@ -1,0 +1,1 @@
+For WINDOWS 10 Docker bind-mount Volume fioevents(nodemon rerun script on file changes) project must be run from WSL file system (home/user/project).It does not work from NTFS( mnt/c/users/user/project)
