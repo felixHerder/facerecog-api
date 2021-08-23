@@ -8,7 +8,7 @@ const register = require('./controllers/register.js');
 const signin = require('./controllers/signin.js');
 const profile = require('./controllers/profile.js');
 const image = require('./controllers/image.js');
-
+const morgan = require('morgan');
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = 0;
 const db = knex({
@@ -19,8 +19,11 @@ const db = knex({
     ssl: process.env.DATABASE_SSL === 'false' ? false : true
   }
 });
+console.log('dockcheck');
+console.log('check22');
 const app = express();
 app.use(express.json());
+app.use(morgan('combined'));
 app.use(cors());
 
 app.get('/', (req, res) => { res.send("howdy"); });
@@ -35,6 +38,6 @@ app.put('/image', (req, res) => { image.handleImage(req, res, db) });
 
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) });
 
-app.listen(process.env.PORT || 5000, () => {
+app.listen(process.env.PORT || 4000, () => {
   console.log(`app is running on port ${process.env.PORT || 5000}`);
 });
