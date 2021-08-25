@@ -3,11 +3,9 @@ version: "3.9"
 services:
 
   # Backend API
-  facerecog-api-docker:
-    container_name: backend
-    # image: node:14.17.5
+  backend:
     build: ./
-    command: npm start
+    command: npm run dev
     working_dir: /usr/src/facerecog-api
     environment:
       POSTGRES_URI: postgres://fx:admin@postgres:5432/facerecog-db-docker
