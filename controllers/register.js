@@ -1,3 +1,5 @@
+const { createSessions } = require('./signin');
+
 const handleRegister = (req, res, db, bcrypt) => {
   const { username, password } = req.body;
   if (!username || !password)
@@ -16,11 +18,9 @@ const handleRegister = (req, res, db, bcrypt) => {
           .insert({
             username: loginuser[0],
             name: loginuser[0],
-            joined: new Date()
+            joined: new Date(),
+            color: '#000000'
           })
-          .then(user => {
-            res.json(user[0]);
-          });
       })
       .then(trx.commit)
       .catch(err => {
@@ -28,6 +28,12 @@ const handleRegister = (req, res, db, bcrypt) => {
         trx.rollback(err);
       });
   })
+    .then(user => {
+      return createSessions(user[0])
+    })
+    .then(session => {
+      return res.json(session)
+    })
     .catch(err => res.status(400).json(err + ' unable to register'));
 }
 
